@@ -7,6 +7,7 @@ VirtualFileService virtualFileService = new(storageService);
 Console.WriteLine(ApplicationConstants.HelpString);
 
 string result;
+string[] folders;
 while (true)
 {
     Console.Write(">>");
@@ -28,7 +29,7 @@ while (true)
                 continue;
             }
 
-            var folders = arguments[1].Split('\\', '/');
+            folders = arguments[1].Split('\\', '/');
 
             result = virtualFileService.AddFolders(folders);
             Console.WriteLine(result);
@@ -41,9 +42,9 @@ while (true)
                 continue;
             }
 
-            var folders2 = arguments[1].Split('\\', '/');
+            folders = arguments[1].Split('\\', '/');
 
-            result = virtualFileService.DeleteFolder(folders2);
+            result = virtualFileService.DeleteFolder(folders);
             Console.WriteLine(result);
             break;
 
@@ -58,9 +59,9 @@ while (true)
                 continue;
             }
 
-            var folders3 = arguments[1].Split('\\', '/');
+            folders = arguments[1].Split('\\', '/');
 
-            result = virtualFileService.AddFile(folders3, arguments[2]);
+            result = virtualFileService.AddFile(folders, arguments[2]);
             Console.WriteLine(result);
             break;
 
@@ -71,9 +72,9 @@ while (true)
                 continue;
             }
 
-            var folders4 = arguments[1].Split('\\', '/');
+            folders = arguments[1].Split('\\', '/');
 
-            result = virtualFileService.RemoveFile(folders4, arguments[2]);
+            result = virtualFileService.RemoveFile(folders, arguments[2]);
             Console.WriteLine(result);
             break;
 

@@ -34,7 +34,7 @@ public static class ApplicationConstants
         $"{ListFolderCommand}\n" +
         $"{ListFilesCommand}\n" +
         $"{WipeDataCommand}\n" +
-        $"{ExitCommand}\n" +
+        $"{ExitCommand} - required for application data to be saved\n" +
         $"{AddFolderCommand} Example: {AddFolderCommand} Folder1\\Folder2\\Folder3\n" +
         $"{RemoveFolder} Example: {RemoveFolder} Folder1\\Folder2\\Folder3\n" +
         $"{AddFileCommand} Example: {AddFileCommand} Folder1\\Folder2\\Folder3 file.text\n" +

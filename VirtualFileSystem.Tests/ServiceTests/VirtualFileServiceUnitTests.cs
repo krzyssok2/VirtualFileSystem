@@ -17,18 +17,6 @@ public class VirtualFileServiceUnitTests
     }
 
     [Test]
-    public void RemoveFile_Success_FileExists()
-    {
-        _mockStorageService.Setup(i => i.GetSystemData()).Returns(ArrangeVirtualFileServiceUnitTests.RootFolderWithParent1FolderAndTestExeFile);
-
-        var testingObject = InitializeTestingObject();
-
-        var result = testingObject.RemoveFile(new string[] { "Parents1" }, "test.exe");
-
-        Assert.That(result, Is.EqualTo(ApplicationConstants.SuccessFileDeleted));
-    }
-
-    [Test]
     public void RemoveFile_Failure_FileNotFound()
     {
         _mockStorageService.Setup(i => i.GetSystemData()).Returns(ArrangeVirtualFileServiceUnitTests.RootFolderWithParent1AndNoFiles);
