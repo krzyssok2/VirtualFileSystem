@@ -32,6 +32,7 @@ public static class ApplicationConstants
 
     public const string HelpString = "Application commands and examples:\n" +
         $"{ListFolderCommand}\n" +
+        $"{ListFilesCommand}\n" +
         $"{WipeDataCommand}\n" +
         $"{ExitCommand}\n" +
         $"{AddFolderCommand} Example: {AddFolderCommand} Folder1\\Folder2\\Folder3\n" +
