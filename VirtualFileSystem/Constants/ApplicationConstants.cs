@@ -26,7 +26,7 @@ public static class ApplicationConstants
     public const string SuccessFoldersCreated = "Folders were created";
 
     public const string FolderNotFound = "Folder for deletion not found";
-    public const string SuccessFolderDeleted = "Folder for deletion not found";
+    public const string SuccessFolderDeleted = "Folder deleted successfully";
 
     public const string Prefix = "  ";
 

@@ -76,6 +76,30 @@ public class VirtualFileServiceUnitTests
         Assert.That(result, Is.EqualTo(ApplicationConstants.SuccessFileAdded));
     }
 
+    [Test]
+    public void DeleteFolder_Failure_FolderNotFound()
+    {
+        _mockStorageService.Setup(i => i.GetSystemData()).Returns(ArrangeVirtualFileServiceUnitTests.RootFolderWithParent1FolderAndTestExeFile);
+
+        var testingObject = InitializeTestingObject();
+
+        var result = testingObject.DeleteFolder(new string[] { "Parents2" });
+
+        Assert.That(result, Is.EqualTo(ApplicationConstants.FolderNotFound));
+    }
+
+    [Test]
+    public void DeleteFolder_Success_FolderDeleted()
+    {
+        _mockStorageService.Setup(i => i.GetSystemData()).Returns(ArrangeVirtualFileServiceUnitTests.RootFolderWithParent1FolderAndTestExeFile);
+
+        var testingObject = InitializeTestingObject();
+
+        var result = testingObject.DeleteFolder(new string[] { "Parents1" });
+
+        Assert.That(result, Is.EqualTo(ApplicationConstants.SuccessFolderDeleted));
+    }
+
     private VirtualFileService InitializeTestingObject()
     {
         return new VirtualFileService(_mockStorageService.Object);

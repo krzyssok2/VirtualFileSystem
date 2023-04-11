@@ -47,7 +47,7 @@ public class VirtualFileService
     {
         var lastFolder = GetFolderWithCreation(RootFolder, folders);
 
-        var doesFileExist = lastFolder.Files.Any(i => i.Name == file);
+        var doesFileExist = lastFolder.Files.Any(i => i.Name.Equals(file, StringComparison.OrdinalIgnoreCase));
 
         if (doesFileExist)
         {
@@ -68,7 +68,7 @@ public class VirtualFileService
             return ApplicationConstants.FolderNotFoundForSpecifiedFile;
         }
 
-        var fileForDeletion = lastFolder.Files.FirstOrDefault(i => i.Name == file);
+        var fileForDeletion = lastFolder.Files.FirstOrDefault(i => i.Name.Equals(file, StringComparison.OrdinalIgnoreCase));
 
         if (fileForDeletion == null)
         {
