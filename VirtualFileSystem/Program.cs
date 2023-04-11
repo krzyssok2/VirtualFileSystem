@@ -10,38 +10,38 @@ string result;
 while (true)
 {
     Console.Write(">>");
-    var command = Console.ReadLine();
+    var input = Console.ReadLine();
 
-    var lines = command.Split(' ');
+    var arguments = input.Split(' ');
 
-    if (lines.Length == 0)
+    if (arguments.Length == 0)
     {
         continue;
     }
 
-    switch (lines[0])
+    switch (arguments[0].ToUpper())
     {
         case ApplicationConstants.AddFolderCommand:
-            if (lines.Length != 2)
+            if (arguments.Length != 2)
             {
-                Console.WriteLine($"Invalid amount of arguments for:{lines[0]}");
+                Console.WriteLine($"Invalid amount of arguments for:{arguments[0]}");
                 continue;
             }
 
-            var folders = lines[1].Split('\\', '/');
+            var folders = arguments[1].Split('\\', '/');
 
             result = virtualFileService.AddFolders(folders);
             Console.WriteLine(result);
             break;
 
         case ApplicationConstants.RemoveFolder:
-            if (lines.Length != 2)
+            if (arguments.Length != 2)
             {
-                Console.WriteLine($"Invalid amount of arguments for:{lines[0]}");
+                Console.WriteLine($"Invalid amount of arguments for:{arguments[0]}");
                 continue;
             }
 
-            var folders2 = lines[1].Split('\\', '/');
+            var folders2 = arguments[1].Split('\\', '/');
 
             result = virtualFileService.DeleteFolder(folders2);
             Console.WriteLine(result);
@@ -52,41 +52,42 @@ while (true)
             break;
 
         case ApplicationConstants.AddFileCommand:
-            if (lines.Length != 3)
+            if (arguments.Length != 3)
             {
-                Console.WriteLine($"Invalid amount of arguments for:{lines[0]}");
+                Console.WriteLine($"Invalid amount of arguments for:{arguments[0]}");
                 continue;
             }
 
-            var folders3 = lines[1].Split('\\', '/');
+            var folders3 = arguments[1].Split('\\', '/');
 
-            result = virtualFileService.AddFile(folders3, lines[2]);
+            result = virtualFileService.AddFile(folders3, arguments[2]);
             Console.WriteLine(result);
             break;
 
         case ApplicationConstants.RemoveFileCommand:
-            if (lines.Length != 3)
+            if (arguments.Length != 3)
             {
-                Console.WriteLine($"Invalid amount of arguments for:{lines[0]}");
+                Console.WriteLine($"Invalid amount of arguments for:{arguments[0]}");
                 continue;
             }
 
-            var folders4 = lines[1].Split('\\', '/');
+            var folders4 = arguments[1].Split('\\', '/');
 
-            result = virtualFileService.RemoveFile(folders4, lines[2]);
+            result = virtualFileService.RemoveFile(folders4, arguments[2]);
             Console.WriteLine(result);
             break;
 
         case ApplicationConstants.ListFilesCommand:
-            if (lines.Length != 2)
+            if (arguments.Length != 2)
             {
-                Console.WriteLine($"Invalid amount of arguments for:{lines[0]}");
+                Console.WriteLine($"Invalid amount of arguments for:{arguments[0]}");
                 continue;
             }
 
-            var folders5 = lines[1].Split('\\', '/');
+            var folders5 = arguments[1].Split('\\', '/');
 
-            virtualFileService.ListFiles(folders5);
+            result = virtualFileService.ListFiles(folders5);
+            Console.Write(result);
             break;
 
         case ApplicationConstants.WipeDataCommand:

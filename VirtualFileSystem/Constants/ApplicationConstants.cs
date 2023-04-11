@@ -4,17 +4,17 @@ public static class ApplicationConstants
 {
     public const string StorageJson = "dataStorage.json";
 
-    public const string RootName = "Root";
+    public const string RootName = "ROOT";
 
-    public const string AddFolderCommand = "AddFolder";
-    public const string RemoveFolder = "RemoveFolder";
-    public const string ListFolderCommand = "ListFolders";
+    public const string AddFolderCommand = "ADDFOLDER";
+    public const string RemoveFolder = "REMOVEFOLDER";
+    public const string ListFolderCommand = "LISTFOLDERS";
 
-    public const string AddFileCommand = "AddFile";
-    public const string RemoveFileCommand = "RemoveFile";
-    public const string ListFilesCommand = "ListFiles";
-    public const string WipeDataCommand = "WipeData";
-    public const string ExitCommand = "Exit";
+    public const string AddFileCommand = "ADDFILE";
+    public const string RemoveFileCommand = "REMOVEFILE";
+    public const string ListFilesCommand = "LISTFILES";
+    public const string WipeDataCommand = "WIPEDATA";
+    public const string ExitCommand = "EXIT";
 
     public const string FolderNotFoundForSpecifiedFile = "Specified folder didn't have file";
     public const string FileNotFound = "File not found";

@@ -15,6 +15,19 @@ public class VirtualFileService
         RootFolder = _storageService.GetSystemData();
     }
 
+    public void SaveAndExit()
+    {
+        _storageService.SaveFolderData(RootFolder);
+    }
+
+    public void HardWipe()
+    {
+        RootFolder = new FolderModel()
+        {
+            Name = ApplicationConstants.RootName
+        };
+    }
+
     public string AddFolders(string[] folders)
     {
         return HandleFolderCreation(RootFolder, folders);
@@ -27,20 +40,7 @@ public class VirtualFileService
 
     public void ListFolders()
     {
-        ListVirtualFolderStructure(RootFolder, "");
-    }
-
-    public void SaveAndExit()
-    {
-        _storageService.SaveFolderData(RootFolder);
-    }
-
-    public void HardWipe()
-    {
-        RootFolder = new FolderModel()
-        {
-            Name = ApplicationConstants.RootName
-        };
+        ListVirtualFolderStructure(RootFolder, string.Empty);
     }
 
     public string AddFile(string[] folders, string file)
@@ -79,19 +79,22 @@ public class VirtualFileService
         return ApplicationConstants.SuccessFileDeleted;
     }
 
-    public void ListFiles(string[] folders)
+    public string ListFiles(string[] folders)
     {
         var lastFolder = GetFoldersWithoutCreation(RootFolder, folders);
 
         if (lastFolder == null)
         {
-            return;
+            return string.Empty;
         }
 
+        var fileList = string.Empty;
         foreach (var item in lastFolder.Files)
         {
-            Console.WriteLine(item.Name);
+            fileList += item.Name + '\n';
         }
+
+        return fileList;
     }
 
     private FolderModel GetFolderWithCreation(FolderModel parentFolder, string[] folders)
