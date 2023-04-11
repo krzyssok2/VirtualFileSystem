@@ -6,7 +6,7 @@ using VirtualFileSystem.Tests.Arrange;
 
 namespace VirtualFileSystem.Tests.ServiceTests;
 
-public class Tests
+public class VirtualFileServiceUnitTests
 {
     private Mock<IStorageService> _mockStorageService;
 

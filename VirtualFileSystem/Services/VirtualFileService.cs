@@ -15,14 +15,14 @@ public class VirtualFileService
         RootFolder = _storageService.GetSystemData();
     }
 
-    public void AddFolders(string[] folders)
+    public string AddFolders(string[] folders)
     {
-        HandleFolderCreation(RootFolder, folders);
+        return HandleFolderCreation(RootFolder, folders);
     }
 
-    public void DeleteFolder(string[] folders)
+    public string DeleteFolder(string[] folders)
     {
-        HandleFolderDeletion(RootFolder, folders);
+        return HandleFolderDeletion(RootFolder, folders);
     }
 
     public void ListFolders()
@@ -103,7 +103,7 @@ public class VirtualFileService
 
         var folder = folders.First();
 
-        var neededFolder = parentFolder.SubFolder.FirstOrDefault(i => i.Name.Equals(folder));
+        var neededFolder = parentFolder.SubFolder.FirstOrDefault(i => i.Name.Equals(folder, StringComparison.OrdinalIgnoreCase));
 
         folders = RemoveFirstEntryInArray(folders);
         if (neededFolder == null)
@@ -130,7 +130,7 @@ public class VirtualFileService
 
         var folder = folders.First();
 
-        var neededFolder = parentFolder.SubFolder.FirstOrDefault(i => i.Name.Equals(folder));
+        var neededFolder = parentFolder.SubFolder.FirstOrDefault(i => i.Name.Equals(folder, StringComparison.OrdinalIgnoreCase));
 
         folders = RemoveFirstEntryInArray(folders);
 
@@ -154,41 +154,42 @@ public class VirtualFileService
         }
     }
 
-    private void HandleFolderDeletion(FolderModel parentFolder, string[] newFolders)
+    private string HandleFolderDeletion(FolderModel parentFolder, string[] newFolders)
     {
         if (newFolders.Length == 0)
         {
-            return;
+            return ApplicationConstants.FolderNotFound;
         }
 
         var folder = newFolders.First();
 
-        var neededFolder = parentFolder.SubFolder.FirstOrDefault(i => i.Name.Equals(folder));
+        var neededFolder = parentFolder.SubFolder.FirstOrDefault(i => i.Name.Equals(folder, StringComparison.OrdinalIgnoreCase));
 
         if (neededFolder == null)
         {
-            return;
+            return ApplicationConstants.FolderNotFound;
         }
 
         if (newFolders.Length == 1)
         {
             parentFolder.SubFolder.Remove(neededFolder);
+            return ApplicationConstants.SuccessFolderDeleted;
         }
 
         newFolders = RemoveFirstEntryInArray(newFolders);
-        HandleFolderDeletion(neededFolder, newFolders);
+        return HandleFolderDeletion(neededFolder, newFolders);
     }
 
-    private void HandleFolderCreation(FolderModel parentFolder, string[] newFolders)
+    private string HandleFolderCreation(FolderModel parentFolder, string[] newFolders)
     {
         if (newFolders.Length == 0)
         {
-            return;
+            return ApplicationConstants.SuccessFoldersCreated;
         }
 
         var folder = newFolders.First();
 
-        var neededFolder = parentFolder.SubFolder.FirstOrDefault(i => i.Name.Equals(folder));
+        var neededFolder = parentFolder.SubFolder.FirstOrDefault(i => i.Name.Equals(folder, StringComparison.OrdinalIgnoreCase));
 
         var newlyCreatedFolder = new FolderModel();
         if (neededFolder == null)
@@ -206,7 +207,7 @@ public class VirtualFileService
         }
 
         newFolders = RemoveFirstEntryInArray(newFolders);
-        HandleFolderCreation(newlyCreatedFolder, newFolders);
+        return HandleFolderCreation(newlyCreatedFolder, newFolders);
     }
 
     private static string[] RemoveFirstEntryInArray(string[] array)

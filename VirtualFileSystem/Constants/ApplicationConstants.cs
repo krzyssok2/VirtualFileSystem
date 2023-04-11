@@ -23,6 +23,11 @@ public static class ApplicationConstants
     public const string FileAlreadyExists = "File with same name already exists";
     public const string SuccessFileAdded = "File added";
 
+    public const string SuccessFoldersCreated = "Folders were created";
+
+    public const string FolderNotFound = "Folder for deletion not found";
+    public const string SuccessFolderDeleted = "Folder for deletion not found";
+
     public const string Prefix = "  ";
 
     public const string HelpString = "Application commands and examples:\n" +

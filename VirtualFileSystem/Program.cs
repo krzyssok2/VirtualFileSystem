@@ -6,9 +6,10 @@ VirtualFileService virtualFileService = new(storageService);
 
 Console.WriteLine(ApplicationConstants.HelpString);
 
+string result;
 while (true)
 {
-    Console.Write(">");
+    Console.Write(">>");
     var command = Console.ReadLine();
 
     var lines = command.Split(' ');
@@ -18,7 +19,7 @@ while (true)
         continue;
     }
 
-    switch (lines[0].ToUpper())
+    switch (lines[0])
     {
         case ApplicationConstants.AddFolderCommand:
             if (lines.Length != 2)
@@ -29,8 +30,8 @@ while (true)
 
             var folders = lines[1].Split('\\', '/');
 
-            virtualFileService.AddFolders(folders);
-
+            result = virtualFileService.AddFolders(folders);
+            Console.WriteLine(result);
             break;
 
         case ApplicationConstants.RemoveFolder:
@@ -42,8 +43,8 @@ while (true)
 
             var folders2 = lines[1].Split('\\', '/');
 
-            virtualFileService.DeleteFolder(folders2);
-
+            result = virtualFileService.DeleteFolder(folders2);
+            Console.WriteLine(result);
             break;
 
         case ApplicationConstants.ListFolderCommand:
@@ -59,8 +60,8 @@ while (true)
 
             var folders3 = lines[1].Split('\\', '/');
 
-            virtualFileService.AddFile(folders3, lines[2]);
-
+            result = virtualFileService.AddFile(folders3, lines[2]);
+            Console.WriteLine(result);
             break;
 
         case ApplicationConstants.RemoveFileCommand:
@@ -72,7 +73,8 @@ while (true)
 
             var folders4 = lines[1].Split('\\', '/');
 
-            virtualFileService.RemoveFile(folders4, lines[2]);
+            result = virtualFileService.RemoveFile(folders4, lines[2]);
+            Console.WriteLine(result);
             break;
 
         case ApplicationConstants.ListFilesCommand:
