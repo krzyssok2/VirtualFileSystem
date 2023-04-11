@@ -14,6 +14,15 @@ public class StorageService : IStorageService
         if (jsonFileExists)
         {
             var json = File.ReadAllText(ApplicationConstants.StorageJson);
+
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                return new FolderModel
+                {
+                    Name = ApplicationConstants.RootName
+                };
+            }
+
             return JsonSerializer.Deserialize<FolderModel>(json);
         }
 
